@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Agendar Suporte</title>
+</head>
+
+<body>
+    <h1>Agendar Suporte Técnico N1</h1>
+    <form id="agendamentoForm">
+        <input type="number" name="usuario_id" placeholder="ID do Usuário" required><br><br>
+        <input type="datetime-local" name="data" required><br><br>
+        <textarea name="descricao" placeholder="Descreva o problema técnico..." required></textarea><br><br>
+        <button type="submit">Agendar</button>
+    </form>
+    <script>
+        document.getElementById('agendamentoForm').onsubmit = async (e) => {
+            e.preventDefault();
+            const form = e.target;
+            const res = await fetch('http://localhost:3000/agendar', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    usuario_id: form.usuario_id.value,
+                    data: form.data.value,
+                    descricao: form.descricao.value
+                })
+            });
+            alert(await res.text());
+        };
+    </script>
+</body>
+
+</html>

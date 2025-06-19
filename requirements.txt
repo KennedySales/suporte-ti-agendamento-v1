@@ -1,0 +1,4 @@
+
+smtplib2==0.2.1
+email-validator==2.1.0
+python-decouple==3.8
